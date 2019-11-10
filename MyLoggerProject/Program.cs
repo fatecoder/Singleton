@@ -17,17 +17,17 @@ namespace MyLoggerProject
             logger.LogError("LOG ERROR");
 
             DataBase db = DataBase.GetMyInstance();
-            db.DBOpenConnection();            
-
+            db.DBOpenConnection();
+            db.ExecCommand("CREATE TABLE IF NOT EXISTS log (id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), description VARCHAR(200), date DATETIME)");
             TxtManager manager = TxtManager.GetMyInstance();
             var lines = manager.ReadFromFile();
 
             foreach (var line in lines)
             {
-                db.DBInsert(line);
+                db.ExecCommand($"INSERT INTO log (description, date) VALUES ('{line}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')");
             }
 
-            db.DBExecReadCommand("SELECT * FROM log");
+            db.ExecCommand("SELECT * FROM log; SHOW tables; DESCRIBE log");
             db.DBCloseConnection();
             Console.ReadKey();
         }
