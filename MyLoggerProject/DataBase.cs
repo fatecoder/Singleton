@@ -9,7 +9,7 @@ namespace MyLoggerProject
 {
     class DataBase
     {
-        public static DataBase mydbinstace;
+        private static DataBase mydbinstace;
         private static MySqlConnection connection;
 
         private DataBase() 
