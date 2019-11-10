@@ -14,7 +14,7 @@ namespace MyLoggerProject
 
         private DataBase() 
         {
-            connection = new MySqlConnection("Server=localhost;Database=test;Port=3306;User Id=root;Password='';Convert Zero Datetime=True");
+            connection = new MySqlConnection("Server=localhost;Database=test;Port=3306;User Id=root;Password='';");
         }
 
         public static DataBase GetMyInstance()
