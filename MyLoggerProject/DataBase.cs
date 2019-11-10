@@ -12,14 +12,16 @@ namespace MyLoggerProject
         public static DataBase mydbinstace;
         private static MySqlConnection connection;
 
-        private DataBase() { }
+        private DataBase() 
+        {
+            connection = new MySqlConnection("Server=localhost;Database=test;Port=3306;User Id=root;Password=''");
+        }
 
         public static DataBase GetMyInstance()
         {
             if (mydbinstace == null)
             {
                 mydbinstace = new DataBase();
-                connection = new MySqlConnection("Server=localhost;Database=test;Port=3306;User Id=root;Password=''");
             }
             return mydbinstace;
         }
